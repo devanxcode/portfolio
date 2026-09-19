@@ -5,11 +5,15 @@ import { Roadmap } from '../sections/Roadmap';
 import { Trading } from '../sections/Trading';
 import { Contact } from '../sections/Contact';
 
-export const HomePage = () => {
+interface HomePageProps {
+  onShowToast?: (msg: string) => void;
+}
+
+export const HomePage = ({ onShowToast }: HomePageProps) => {
   return (
     <main id="main-content">
       {/* 1. Hero */}
-      <Hero />
+      <Hero onShowToast={onShowToast} />
 
       {/* 2. About */}
       <About />
@@ -24,7 +28,7 @@ export const HomePage = () => {
       <Trading />
 
       {/* 6. Contact */}
-      <Contact />
+      <Contact onShowToast={onShowToast} />
     </main>
   );
 };

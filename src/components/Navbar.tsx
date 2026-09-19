@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { Sun, Moon, ArrowUpRight } from 'lucide-react';
+import { Sun, Moon, ArrowUpRight, Search } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 interface NavbarProps {
   isDark: boolean;
   onToggleTheme: () => void;
+  onOpenCommandPalette?: () => void;
 }
 
 interface NavItem {
@@ -25,7 +26,7 @@ const NAV_LINKS: NavItem[] = [
   { label: 'Contact', href: '/#contact', count: '06' },
 ];
 
-export const Navbar = ({ isDark, onToggleTheme }: NavbarProps) => {
+export const Navbar = ({ isDark, onToggleTheme, onOpenCommandPalette }: NavbarProps) => {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
@@ -130,8 +131,21 @@ export const Navbar = ({ isDark, onToggleTheme }: NavbarProps) => {
 
           <div className="h-3.5 w-[1px] bg-black/[0.08] dark:bg-white/[0.1] hidden sm:block" />
 
-          {/* Action buttons on the right: Theme Toggle + Mobile Menu Trigger */}
+          {/* Action buttons on the right: Command Palette + Theme Toggle + Mobile Menu Trigger */}
           <div className="flex items-center gap-1.5">
+            {/* Command Palette Trigger */}
+            {onOpenCommandPalette && (
+              <button
+                onClick={onOpenCommandPalette}
+                type="button"
+                className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-mono text-ink-secondary-light dark:text-ink-secondary-dark hover:text-ink-primary-light dark:hover:text-ink-primary-dark hover:bg-black/[0.05] dark:hover:bg-white/[0.08] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                title="Search or press Cmd+K / Ctrl+K"
+              >
+                <Search className="w-3 h-3 text-accent" />
+                <span className="hidden sm:inline">⌘K</span>
+              </button>
+            )}
+
             {/* Theme Toggle Button */}
             <motion.button
               whileTap={{ scale: 0.92 }}

@@ -1,9 +1,14 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { SectionHeading } from '../components/SectionHeading';
 import { portfolioData } from '../data/portfolioData';
-import { Mail, ArrowUpRight } from 'lucide-react';
+import { Mail, ArrowUpRight, Send, Copy, Check } from 'lucide-react';
 import { GithubIcon, InstagramIcon } from '../components/icons/BrandIcons';
 import { APPLE_EASE } from '../utils/animation';
+
+interface ContactProps {
+  onShowToast?: (msg: string) => void;
+}
 
 interface IconComponentProps {
   iconName: 'github' | 'mail' | 'instagram';
@@ -23,16 +28,46 @@ const ContactIcon = ({ iconName, className, size = 20 }: IconComponentProps) => 
   }
 };
 
-export const Contact = () => {
+export const Contact = ({ onShowToast }: ContactProps) => {
+  const [name, setName] = useState('');
+  const [senderEmail, setSenderEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [copied, setCopied] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!message.trim()) return;
+
+    const subject = encodeURIComponent(`Message from ${name || 'Portfolio Visitor'}`);
+    const body = encodeURIComponent(
+      `Name: ${name || 'Anonymous'}\nEmail: ${senderEmail || 'Not provided'}\n\nMessage:\n${message}`
+    );
+
+    window.open(`mailto:dexanxcode@gmail.com?subject=${subject}&body=${body}`, '_blank');
+    if (onShowToast) {
+      onShowToast('Opening your default mail client...');
+    }
+  };
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('dexanxcode@gmail.com');
+    setCopied(true);
+    if (onShowToast) {
+      onShowToast('Email copied to clipboard (dexanxcode@gmail.com)');
+    }
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <section id="contact" className="py-24 px-6 sm:px-8 max-w-6xl mx-auto scroll-mt-20">
       <SectionHeading
         badge="Connect"
         title="Get in touch."
-        subtitle="Whether you'd like to discuss code, collaborate on a project, or just say hello — my inbox is always open."
+        subtitle="Whether you'd like to discuss code, share feedback, or just say hello — my inbox is always open."
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* 3 Main Social Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
         {portfolioData.socials.map((item, idx) => {
           const isEmail = item.url.startsWith('mailto:');
 
@@ -77,6 +112,94 @@ export const Contact = () => {
           );
         })}
       </div>
+
+      {/* Interactive Quick Message Composer Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-20px' }}
+        transition={{ duration: 0.6, ease: APPLE_EASE }}
+        className="rounded-3xl hairline-border bg-surface-light dark:bg-surface-dark p-8 sm:p-10 shadow-sm"
+      >
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <div>
+            <h3 className="text-xl font-bold text-ink-primary-light dark:text-ink-primary-dark">
+              Send a Direct Message
+            </h3>
+            <p className="text-sm text-ink-secondary-light dark:text-ink-secondary-dark mt-1">
+              Have a question or collaboration proposal? Draft it directly below.
+            </p>
+          </div>
+
+          {/* Quick Copy Email Action */}
+          <button
+            onClick={handleCopyEmail}
+            type="button"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium hairline-border bg-surface-light-elevated dark:bg-surface-dark-elevated text-ink-secondary-light dark:text-ink-secondary-dark hover:text-ink-primary-light dark:hover:text-ink-primary-dark transition-colors self-start sm:self-auto shrink-0"
+          >
+            {copied ? (
+              <Check className="w-3.5 h-3.5 text-emerald-500" />
+            ) : (
+              <Copy className="w-3.5 h-3.5 text-accent" />
+            )}
+            <span>{copied ? 'Copied dexanxcode@gmail.com' : 'Copy Email Address'}</span>
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-medium text-ink-secondary-light dark:text-ink-secondary-dark mb-1.5">
+                Your Name
+              </label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Alex Johnson"
+                className="w-full px-4 py-3 rounded-xl hairline-border bg-surface-light-elevated dark:bg-surface-dark-elevated text-sm text-ink-primary-light dark:text-ink-primary-dark placeholder:text-ink-muted-light dark:placeholder:text-ink-muted-dark focus:outline-none focus:ring-2 focus:ring-accent"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-ink-secondary-light dark:text-ink-secondary-dark mb-1.5">
+                Your Email Address
+              </label>
+              <input
+                type="email"
+                value={senderEmail}
+                onChange={(e) => setSenderEmail(e.target.value)}
+                placeholder="alex@example.com"
+                className="w-full px-4 py-3 rounded-xl hairline-border bg-surface-light-elevated dark:bg-surface-dark-elevated text-sm text-ink-primary-light dark:text-ink-primary-dark placeholder:text-ink-muted-light dark:placeholder:text-ink-muted-dark focus:outline-none focus:ring-2 focus:ring-accent"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-medium text-ink-secondary-light dark:text-ink-secondary-dark mb-1.5">
+              Message <span className="text-accent">*</span>
+            </label>
+            <textarea
+              required
+              rows={4}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="Hi Devanand, I came across your portfolio and wanted to reach out regarding..."
+              className="w-full px-4 py-3 rounded-xl hairline-border bg-surface-light-elevated dark:bg-surface-dark-elevated text-sm text-ink-primary-light dark:text-ink-primary-dark placeholder:text-ink-muted-light dark:placeholder:text-ink-muted-dark focus:outline-none focus:ring-2 focus:ring-accent resize-none"
+            />
+          </div>
+
+          <div className="flex justify-end pt-2">
+            <button
+              type="submit"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-semibold bg-surface-dark dark:bg-surface-light text-ink-primary-dark dark:text-ink-primary-light hover:opacity-90 active:scale-[0.98] transition-all shadow-sm"
+            >
+              <Send className="w-3.5 h-3.5" />
+              <span>Send Message</span>
+            </button>
+          </div>
+        </form>
+      </motion.div>
     </section>
   );
 };

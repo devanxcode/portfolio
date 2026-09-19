@@ -1,10 +1,18 @@
 import { motion, type Variants } from 'framer-motion';
-import { ArrowDown, Mail, MapPin } from 'lucide-react';
+import { ArrowDown, Mail, MapPin, Copy, Check } from 'lucide-react';
+import { useState } from 'react';
 import { GithubIcon } from '../components/icons/BrandIcons';
+import { LiveClock } from '../components/LiveClock';
 import { portfolioData } from '../data/portfolioData';
 import { APPLE_EASE } from '../utils/animation';
 
-export const Hero = () => {
+interface HeroProps {
+  onShowToast?: (msg: string) => void;
+}
+
+export const Hero = ({ onShowToast }: HeroProps) => {
+  const [copied, setCopied] = useState(false);
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -29,6 +37,15 @@ export const Hero = () => {
     },
   };
 
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('dexanxcode@gmail.com');
+    setCopied(true);
+    if (onShowToast) {
+      onShowToast('Email copied to clipboard (dexanxcode@gmail.com)');
+    }
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <section className="min-h-[88vh] flex flex-col justify-center relative pt-24 sm:pt-28 pb-16 px-6 sm:px-8 max-w-6xl mx-auto">
       <motion.div
@@ -37,12 +54,16 @@ export const Hero = () => {
         animate="visible"
         className="max-w-3xl"
       >
-        {/* Location & Status Badge */}
-        <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-3 mb-6">
+        {/* Location, Status Badge & Real-Time Live Clock */}
+        <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-2.5 mb-6">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium hairline-border bg-surface-light dark:bg-surface-dark text-ink-secondary-light dark:text-ink-secondary-dark">
             <MapPin className="w-3.5 h-3.5 text-accent" />
             {portfolioData.personal.location}
           </span>
+
+          {/* Real-Time Live Clock */}
+          <LiveClock />
+
           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium hairline-border bg-surface-light dark:bg-surface-dark text-ink-secondary-light dark:text-ink-secondary-dark">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             {portfolioData.personal.statusText}
@@ -76,7 +97,7 @@ export const Hero = () => {
         {/* Action Buttons */}
         <motion.div
           variants={itemVariants}
-          className="mt-10 flex flex-wrap items-center gap-4"
+          className="mt-10 flex flex-wrap items-center gap-3.5"
         >
           {/* GitHub CTA */}
           <a
@@ -97,6 +118,21 @@ export const Hero = () => {
             <Mail className="w-4 h-4 text-accent" />
             <span>Get in touch</span>
           </a>
+
+          {/* One-Click Copy Email Button */}
+          <button
+            onClick={handleCopyEmail}
+            type="button"
+            className="inline-flex items-center gap-2 px-4 py-3.5 rounded-full text-xs font-medium hairline-border bg-surface-light dark:bg-surface-dark text-ink-secondary-light dark:text-ink-secondary-dark hover:text-ink-primary-light dark:hover:text-ink-primary-dark hover:bg-surface-light-elevated dark:hover:bg-surface-dark-elevated active:scale-[0.98] transition-all duration-200"
+            title="Copy email to clipboard"
+          >
+            {copied ? (
+              <Check className="w-3.5 h-3.5 text-emerald-500" />
+            ) : (
+              <Copy className="w-3.5 h-3.5 text-accent" />
+            )}
+            <span>{copied ? 'Copied!' : 'Copy Email'}</span>
+          </button>
         </motion.div>
       </motion.div>
 
