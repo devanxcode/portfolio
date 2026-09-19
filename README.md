@@ -1,18 +1,18 @@
 <div align="center">
 
-# Devanand M — Personal Portfolio
+# Devanand M — Official Portfolio
 
-[![Live Demo](https://img.shields.io/badge/Demo-devanxcode.github.io%2Fportfolio-blue?style=for-the-badge&logo=githubpages&logoColor=white)](https://devanxcode.github.io/portfolio/)
+[![Live Site](https://img.shields.io/badge/Live_Site-www.devanandworks.in-2563EB?style=for-the-badge&logo=googlechrome&logoColor=white)](https://www.devanandworks.in/)
 [![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-black?style=for-the-badge&logo=framer&logoColor=blue)](https://www.framer.com/motion/)
 
 <p align="center">
-  A clean, responsive personal portfolio built with <strong>React 19</strong>, <strong>TypeScript</strong>, <strong>Tailwind CSS</strong>, and <strong>Framer Motion</strong>, inspired by Apple's minimalist design philosophy.
+  The official personal portfolio website of <strong>Devanand M</strong>, built with <strong>React 19</strong>, <strong>TypeScript</strong>, <strong>Tailwind CSS</strong>, and <strong>Framer Motion</strong>, inspired by Apple's minimalist design philosophy.
 </p>
 
-[**Explore Live Website »**](https://devanxcode.github.io/portfolio/)
+[**Visit www.devanandworks.in »**](https://www.devanandworks.in/)
 
 </div>
 
