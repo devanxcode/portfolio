@@ -1,6 +1,5 @@
 import { motion, type Variants } from 'framer-motion';
-import { ArrowDown, Mail, MapPin, Copy, Check } from 'lucide-react';
-import { useState } from 'react';
+import { ArrowDown, Mail, MapPin } from 'lucide-react';
 import { GithubIcon } from '../components/icons/BrandIcons';
 import { LiveClock } from '../components/LiveClock';
 import { portfolioData } from '../data/portfolioData';
@@ -10,9 +9,7 @@ interface HeroProps {
   onShowToast?: (msg: string) => void;
 }
 
-export const Hero = ({ onShowToast }: HeroProps) => {
-  const [copied, setCopied] = useState(false);
-
+export const Hero = ({}: HeroProps) => {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -35,15 +32,6 @@ export const Hero = ({ onShowToast }: HeroProps) => {
         ease: APPLE_EASE,
       },
     },
-  };
-
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText('dexanxcode@gmail.com');
-    setCopied(true);
-    if (onShowToast) {
-      onShowToast('Email copied to clipboard (dexanxcode@gmail.com)');
-    }
-    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
@@ -118,21 +106,6 @@ export const Hero = ({ onShowToast }: HeroProps) => {
             <Mail className="w-4 h-4 text-accent" />
             <span>Get in touch</span>
           </a>
-
-          {/* One-Click Copy Email Button */}
-          <button
-            onClick={handleCopyEmail}
-            type="button"
-            className="inline-flex items-center gap-2 px-4 py-3.5 rounded-full text-xs font-medium hairline-border bg-surface-light dark:bg-surface-dark text-ink-secondary-light dark:text-ink-secondary-dark hover:text-ink-primary-light dark:hover:text-ink-primary-dark hover:bg-surface-light-elevated dark:hover:bg-surface-dark-elevated active:scale-[0.98] transition-all duration-200"
-            title="Copy email to clipboard"
-          >
-            {copied ? (
-              <Check className="w-3.5 h-3.5 text-emerald-500" />
-            ) : (
-              <Copy className="w-3.5 h-3.5 text-accent" />
-            )}
-            <span>{copied ? 'Copied!' : 'Copy Email'}</span>
-          </button>
         </motion.div>
       </motion.div>
 

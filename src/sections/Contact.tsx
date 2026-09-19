@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { SectionHeading } from '../components/SectionHeading';
 import { portfolioData } from '../data/portfolioData';
-import { Mail, ArrowUpRight, Send, Copy, Check } from 'lucide-react';
+import { Mail, ArrowUpRight, Send } from 'lucide-react';
 import { GithubIcon, InstagramIcon } from '../components/icons/BrandIcons';
 import { APPLE_EASE } from '../utils/animation';
 
@@ -32,7 +32,6 @@ export const Contact = ({ onShowToast }: ContactProps) => {
   const [name, setName] = useState('');
   const [senderEmail, setSenderEmail] = useState('');
   const [message, setMessage] = useState('');
-  const [copied, setCopied] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,15 +46,6 @@ export const Contact = ({ onShowToast }: ContactProps) => {
     if (onShowToast) {
       onShowToast('Opening your default mail client...');
     }
-  };
-
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText('dexanxcode@gmail.com');
-    setCopied(true);
-    if (onShowToast) {
-      onShowToast('Email copied to clipboard (dexanxcode@gmail.com)');
-    }
-    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
@@ -130,20 +120,6 @@ export const Contact = ({ onShowToast }: ContactProps) => {
               Have a question or collaboration proposal? Draft it directly below.
             </p>
           </div>
-
-          {/* Quick Copy Email Action */}
-          <button
-            onClick={handleCopyEmail}
-            type="button"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium hairline-border bg-surface-light-elevated dark:bg-surface-dark-elevated text-ink-secondary-light dark:text-ink-secondary-dark hover:text-ink-primary-light dark:hover:text-ink-primary-dark transition-colors self-start sm:self-auto shrink-0"
-          >
-            {copied ? (
-              <Check className="w-3.5 h-3.5 text-emerald-500" />
-            ) : (
-              <Copy className="w-3.5 h-3.5 text-accent" />
-            )}
-            <span>{copied ? 'Copied dexanxcode@gmail.com' : 'Copy Email Address'}</span>
-          </button>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
