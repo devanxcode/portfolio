@@ -72,6 +72,13 @@ export interface PortfolioData {
     title: string;
     badge: string;
     intro: string;
+    style: string;
+    strategy: {
+      name: string;
+      type: string;
+      description: string;
+      keyConcepts: { label: string; detail: string }[];
+    };
     propFirm: PropFirmInfo;
     keyTakeaways: { title: string; desc: string }[];
     disclaimer: string;

@@ -6,74 +6,78 @@ import {
   ExternalLink,
   Shield,
   Clock,
-  Compass,
   CheckCircle2,
   Info,
   Hexagon,
   Scale,
   Brain,
   Code2,
+  Calculator,
+  Layers,
+  SlidersHorizontal,
+  ArrowUpRight,
+  LineChart,
 } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 import { APPLE_EASE } from '../utils/animation';
 
 export const TradingPage = () => {
   const [logoError, setLogoError] = useState(false);
-  const { propFirm } = portfolioData.trading;
+  const { propFirm, strategy } = portfolioData.trading;
 
   const corePillars = [
     {
       icon: Shield,
       title: 'Strict Risk Architecture',
-      desc: 'Capital preservation is priority zero. Trading with fixed risk parameters (strictly 0.5%–1% per setup) ensures drawdowns stay far below prop firm limits.',
+      desc: 'Capital preservation is priority zero. Trading strictly 0.5%–1% risk per setup ensures drawdowns stay far below prop firm limits.',
     },
     {
       icon: Brain,
       title: 'Emotional Detachment',
-      desc: 'Treating trading as a purely probabilistic system. Wins and losses are simply statistical outcomes; the only measure of success is rule adherence.',
+      desc: 'Treating trading as a purely probabilistic system. Wins and losses are statistical outcomes; the only metric of success is rule adherence.',
     },
     {
       icon: Clock,
-      title: 'Patience & Quality Over Quantity',
-      desc: 'Sitting on hands when market conditions are messy. Waiting hours or days for clean market structure rather than forcing trades out of boredom.',
+      title: 'Selective Patience',
+      desc: 'Sitting on hands when market structure is messy. Waiting hours or days for clean Malaysian SnR key levels rather than forcing random trades.',
     },
     {
       icon: Scale,
       title: 'Accountability & Journaling',
-      desc: 'Every execution is logged, reviewed, and audited. Reviewing mistakes without ego is how compounding consistency happens over months and years.',
+      desc: 'Every manual execution is logged, snapshotted, and audited. Reviewing mistakes without ego is how long-term consistency is built.',
     },
   ];
 
   const parallels = [
     {
-      title: 'Debugging Code ↔ Trade Review',
-      desc: 'Finding a root cause behind a software defect requires the exact same objective mindset as reviewing trade logs to understand why an execution failed.',
+      title: 'Root Cause Debugging ↔ Trade Audit',
+      desc: 'Finding a root cause behind a software bug requires the exact same objective mindset as auditing a losing trade log to diagnose execution flaws.',
     },
     {
-      title: 'Rule-Based Logic ↔ Algorithmic Thinking',
-      desc: 'Writing clean, declarative code with clear conditional branches mirrors executing market orders only when strict, predefined criteria are met.',
+      title: 'Systematic Discretion ↔ Clean Code',
+      desc: 'Just as modular code executes conditional branches based on precise logic, manual discretionary trading triggers orders only when predefined SnR rules align.',
     },
     {
       title: 'Resilience Under Uncertainty',
-      desc: 'Neither code deployments nor financial markets offer 100% certainty. Both demand staying calm, diagnosing problems rationally, and executing solutions steadily.',
+      desc: 'Neither live deployments nor financial markets offer 100% certainty. Both demand staying calm, managing downside, and executing steadily under pressure.',
     },
   ];
 
   const routineSteps = [
     {
       step: '01',
-      title: 'Pre-Market Preparation',
-      desc: 'Reviewing economic calendar events, liquidity schedules, and higher timeframe structure before market open.',
+      title: 'HTF Structure & Key Levels (Daily / H4)',
+      desc: 'Marking dominant market trends, fresh horizontal support and resistance zones, and major liquidity areas on clean naked charts before the session begins.',
     },
     {
       step: '02',
-      title: 'Session Execution',
-      desc: 'Waiting patiently for valid setup criteria. Calculating exact position size based on stop-loss distance prior to order entry.',
+      title: 'LTF Entry Confirmation & Lot Sizing (H1 / M15)',
+      desc: 'Waiting for price to react at the SnR level (SBR/RBS). Calculating exact standard lot size and risk capital using my Position Size Calculator before order entry.',
     },
     {
       step: '03',
-      title: 'Post-Market Journaling',
-      desc: 'Documenting screenshots, emotional state, and rule compliance. Grading the process rather than the P&L.',
+      title: 'Post-Market Journaling & Audit',
+      desc: 'Logging screenshots, entry rationale, emotional state, and rule compliance. Grading execution discipline rather than raw P&L.',
     },
   ];
 
@@ -102,25 +106,125 @@ export const TradingPage = () => {
         transition={{ duration: 0.6, ease: APPLE_EASE }}
         className="max-w-3xl mb-12 sm:mb-16"
       >
-        <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full text-xs font-medium hairline-border bg-surface-light dark:bg-surface-dark text-ink-secondary-light dark:text-ink-secondary-dark">
-          <Compass className="w-3.5 h-3.5 text-accent" />
-          <span>Secondary Pursuit</span>
+        <div className="flex flex-wrap items-center gap-2 mb-4">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium hairline-border bg-surface-light dark:bg-surface-dark text-amber-600 dark:text-amber-400">
+            <LineChart className="w-3.5 h-3.5" />
+            <span>Discretionary Funded Trader</span>
+          </div>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium hairline-border bg-surface-light dark:bg-surface-dark text-ink-secondary-light dark:text-ink-secondary-dark">
+            <SlidersHorizontal className="w-3.5 h-3.5 text-accent" />
+            <span>Malaysian SnR Strategy</span>
+          </div>
         </div>
 
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink-primary-light dark:text-ink-primary-dark">
-          Markets & Prop Trading
+          Funded Trader • Malaysian SnR
         </h1>
 
         <p className="mt-4 text-base sm:text-lg text-ink-secondary-light dark:text-ink-secondary-dark leading-relaxed">
-          Outside of software engineering, I actively trade evaluated capital with a proprietary trading firm. It is my testing ground for emotional discipline, risk control, and structured execution.
+          Outside of software engineering, I am a manual discretionary price action trader operating evaluated capital with{' '}
+          <strong className="text-ink-primary-light dark:text-ink-primary-dark font-medium">Funded Hive</strong>. My edge is built purely on{' '}
+          <strong className="text-ink-primary-light dark:text-ink-primary-dark font-medium">Malaysian Support & Resistance (SnR)</strong> — analyzing naked charts, fresh horizontal levels, and strict risk control with zero automated bots or lagging indicators.
         </p>
       </motion.div>
 
-      {/* Section 1: Funded Hive Spotlight Card */}
+      {/* Strategy Showcase: Malaysian SnR Deep Dive */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1, ease: APPLE_EASE }}
+        className="rounded-3xl hairline-border bg-surface-light dark:bg-surface-dark p-6 sm:p-10 mb-12 sm:mb-16 shadow-sm"
+      >
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-black/[0.06] dark:border-white/[0.08]">
+          <div>
+            <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-accent font-semibold mb-2">
+              <Layers className="w-4 h-4" />
+              <span>Core Methodology</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-ink-primary-light dark:text-ink-primary-dark">
+              {strategy.name} (Support & Resistance)
+            </h2>
+          </div>
+
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 self-start sm:self-auto">
+            <CheckCircle2 className="w-3.5 h-3.5" />
+            <span>Naked Price Action • No Bots</span>
+          </div>
+        </div>
+
+        <p className="mt-6 text-sm sm:text-base text-ink-secondary-light dark:text-ink-secondary-dark leading-relaxed">
+          {strategy.description}
+        </p>
+
+        {/* 4 Core Pillars of Malaysian SnR */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+          {strategy.keyConcepts.map((concept, idx) => (
+            <div
+              key={concept.label}
+              className="p-5 rounded-2xl hairline-border bg-surface-light-elevated/60 dark:bg-surface-dark-elevated/40 flex flex-col justify-between"
+            >
+              <div className="flex items-center gap-2.5 mb-2">
+                <span className="w-6 h-6 rounded-lg bg-accent/10 text-accent font-mono text-xs font-bold flex items-center justify-center">
+                  {idx + 1}
+                </span>
+                <h3 className="text-sm sm:text-base font-semibold text-ink-primary-light dark:text-ink-primary-dark">
+                  {concept.label}
+                </h3>
+              </div>
+              <p className="text-xs sm:text-sm text-ink-secondary-light dark:text-ink-secondary-dark leading-relaxed">
+                {concept.detail}
+              </p>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Real Developer Crossover: Custom Position Size Calculator Tool */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.15, ease: APPLE_EASE }}
+        className="rounded-3xl hairline-border bg-gradient-to-br from-surface-light to-surface-light-elevated dark:from-surface-dark dark:to-surface-dark-elevated p-6 sm:p-10 mb-12 sm:mb-16 shadow-sm"
+      >
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="max-w-xl">
+            <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-accent font-semibold mb-2">
+              <Calculator className="w-4 h-4" />
+              <span>Developer ↔ Trader Crossover</span>
+            </div>
+            <h2 className="text-xl sm:text-2xl font-bold text-ink-primary-light dark:text-ink-primary-dark mb-2">
+              Built to Solve Real Risk: Position Size Calculator
+            </h2>
+            <p className="text-sm text-ink-secondary-light dark:text-ink-secondary-dark leading-relaxed">
+              When managing evaluated prop firm capital, standard lots cannot be guessed. A miscalculated pip value on Gold or Forex pairs can trigger a daily drawdown violation. I coded and deployed my own web application to calculate exact lots, risk capital, and stop loss margins in seconds before placing trades.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap sm:flex-nowrap gap-3 shrink-0 w-full md:w-auto">
+            <Link
+              to="/projects"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-xs font-semibold hairline-border bg-surface-light dark:bg-surface-dark text-ink-primary-light dark:text-ink-primary-dark hover:bg-surface-light-elevated dark:hover:bg-surface-dark-elevated transition-colors"
+            >
+              <span>View in Projects</span>
+            </Link>
+            <a
+              href="https://position-size-calculator-sigma.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-xs font-semibold bg-surface-dark dark:bg-surface-light text-ink-primary-dark dark:text-ink-primary-light hover:opacity-90 active:scale-[0.98] transition-all shadow-sm"
+            >
+              <span>Launch Calculator</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Prop Firm Evaluation Spotlight: Funded Hive */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2, ease: APPLE_EASE }}
         className="rounded-3xl hairline-border bg-surface-light dark:bg-surface-dark p-6 sm:p-10 mb-12 sm:mb-16 shadow-sm"
       >
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pb-6 border-b border-black/[0.06] dark:border-white/[0.08]">
@@ -148,7 +252,7 @@ export const TradingPage = () => {
                 </span>
               </div>
               <p className="text-xs sm:text-sm text-ink-secondary-light dark:text-ink-secondary-dark">
-                Proprietary trading firm evaluation & capital management
+                Proprietary evaluation & risk-managed trading account
               </p>
             </div>
           </div>
@@ -166,21 +270,21 @@ export const TradingPage = () => {
 
         <div className="mt-6 space-y-4 text-sm sm:text-base text-ink-secondary-light dark:text-ink-secondary-dark leading-relaxed">
           <p>
-            Trading with a prop firm requires passing rigorous multi-stage performance evaluations where risk management is strictly enforced. Violating daily loss limits or maximum drawdown instantly terminates an account.
+            Trading evaluated capital with a prop firm requires adhering to non-negotiable performance constraints. Breaching the daily loss limit or trailing maximum drawdown immediately invalidates the account.
           </p>
           <p>
-            This model completely eliminates the illusion of easy profits. It forces an unwavering focus on capital preservation, disciplined lot sizing, and consistent execution over short-term gratification.
+            This structure eliminates gambler mentalities and reinforces what matters: patience for pristine Malaysian SnR setups, calculating every position size precisely, and protecting capital above all else.
           </p>
         </div>
       </motion.div>
 
-      {/* Section 2: Core Risk & Execution Pillars */}
+      {/* Section 2: Core Risk Pillars */}
       <div className="mb-12 sm:mb-16">
         <h2 className="text-2xl sm:text-3xl font-bold text-ink-primary-light dark:text-ink-primary-dark mb-3">
           The Four Risk Pillars
         </h2>
         <p className="text-sm sm:text-base text-ink-secondary-light dark:text-ink-secondary-dark mb-8">
-          Principles that govern every single market decision.
+          Strict rules governing every single market execution.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
@@ -214,10 +318,10 @@ export const TradingPage = () => {
       {/* Section 3: Daily Routine */}
       <div className="mb-12 sm:mb-16 rounded-3xl hairline-border bg-surface-light dark:bg-surface-dark p-6 sm:p-10">
         <h2 className="text-2xl sm:text-3xl font-bold text-ink-primary-light dark:text-ink-primary-dark mb-2">
-          Daily Execution Process
+          Daily SnR Execution Routine
         </h2>
         <p className="text-sm text-ink-secondary-light dark:text-ink-secondary-dark mb-8">
-          A systematic routine to maintain consistency and eliminate emotional impulse.
+          A disciplined, step-by-step workflow to eliminate impulse trading.
         </p>
 
         <div className="space-y-4">
@@ -252,7 +356,7 @@ export const TradingPage = () => {
           How Trading Strengthens My Engineering
         </h2>
         <p className="text-sm sm:text-base text-ink-secondary-light dark:text-ink-secondary-dark mb-8">
-          The mental models developed in financial markets directly improve how I write and debug software.
+          The mental models and emotional control forged in financial markets directly enhance software development.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
@@ -285,7 +389,7 @@ export const TradingPage = () => {
           <strong className="text-ink-secondary-light dark:text-ink-secondary-dark font-medium">
             Important Notice:{' '}
           </strong>
-          This page represents personal market interest, study, and participation in prop firm evaluation programs. It is not financial advice, investment advisory, or trade recommendations. Capital in trading is at risk.
+          {portfolioData.trading.disclaimer}
         </div>
       </div>
     </div>

@@ -85,14 +85,14 @@ export const HomePage = ({ onShowToast }: HomePageProps) => {
                 </div>
 
                 <div className="inline-flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-wider text-amber-500 mb-2">
-                  <span>Funded Hive Prop Firm</span>
+                  <span>Funded Trader • Malaysian SnR</span>
                 </div>
 
                 <h3 className="text-xl sm:text-2xl font-bold text-ink-primary-light dark:text-ink-primary-dark mb-2">
-                  Markets & Prop Trading
+                  Funded Account Trading
                 </h3>
                 <p className="text-sm text-ink-secondary-light dark:text-ink-secondary-dark leading-relaxed">
-                  How trading evaluated capital reinforces risk management, emotional discipline, and patience.
+                  Discretionary price action on naked charts using Malaysian Support & Resistance with Funded Hive.
                 </p>
               </div>
 

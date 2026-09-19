@@ -136,31 +136,55 @@ export const portfolioData: PortfolioData = {
     }
   ],
   trading: {
-    title: "Beyond code: Markets",
-    badge: "Secondary Interest",
-    intro: "Outside of writing software, I trade the markets with a proprietary trading firm.",
+    title: "Funded Trader • Malaysian SnR",
+    badge: "Discretionary Trader",
+    intro: "Outside of writing software, I trade evaluated capital with Funded Hive. I am purely a manual, discretionary price action trader specializing in Malaysian Support & Resistance (SnR) — zero automated bots or lagging indicators.",
+    style: "Manual Discretionary Price Action",
+    strategy: {
+      name: "Malaysian SnR",
+      type: "Horizontal Support & Resistance • Naked Price Action",
+      description: "A disciplined, pure price action methodology focusing on key horizontal levels, structural retests (SBR & RBS), and multi-timeframe confirmation to execute high-probability, low-risk entries.",
+      keyConcepts: [
+        {
+          label: "Horizontal SBR & RBS",
+          detail: "Support Becomes Resistance (SBR) for short setups, and Resistance Becomes Support (RBS) for long setups at fresh key price barriers."
+        },
+        {
+          label: "Multi-Timeframe Structure",
+          detail: "Using High Timeframes (Daily, H4) to mark major structural zones and trends, paired with Lower Timeframes (H1, M15) for precise trigger confirmations."
+        },
+        {
+          label: "Naked Price Action",
+          detail: "Zero lagging indicators (no RSI, MACD, or moving averages). Decisions are based 100% on candlestick behavior, market structure, and fresh reaction levels."
+        },
+        {
+          label: "Strict Invalidation & Position Sizing",
+          detail: "Clear structural invalidation levels. Exact lot sizes and stop-loss distances are pre-calculated to never exceed 0.5%–1% capital risk."
+        }
+      ]
+    },
     propFirm: {
       name: "Funded Hive",
       logoUrl: "https://funded.tradinghive.com/static/assets/media/logos/logo-new.svg?t=1789789759",
       inviteUrl: "https://funded.tradinghive.com/registration?invite=0qcC05rC1mfRuuIHMm3L35MJ2xLelLCDUOpzhzz8pAg&utm_source=invite&utm_medium=user_share&utm_campaign=user_invite",
       badge: "Prop Trading Firm",
-      description: "Trading with Funded Hive under structured risk guidelines and strict drawdown parameters."
+      description: "Trading evaluated firm capital under strict daily drawdown rules, requiring disciplined execution and absolute risk management."
     },
     keyTakeaways: [
       {
-        title: "Risk Control",
-        desc: "Strict adherence to maximum drawdown limits, capital protection, and position sizing."
+        title: "Discretionary Execution",
+        desc: "Trading manually based on verified chart patterns and human discipline rather than automated black-box algorithms."
       },
       {
-        title: "Execution Discipline",
-        desc: "Following predefined rules without letting emotional impulses dictate decisions."
+        title: "Rigid Risk Architecture",
+        desc: "Strict adherence to maximum drawdown parameters, capital preservation, and exact lot sizing."
       },
       {
-        title: "Patience",
-        desc: "Waiting for valid opportunities rather than rushing into trades — a habit that carries directly into debugging code."
+        title: "Selective Patience",
+        desc: "Waiting hours or days for clean Malaysian SnR key levels to form rather than forcing low-probability setups out of boredom."
       }
     ],
-    disclaimer: "For personal interest sharing only; not financial advice or trade recommendations."
+    disclaimer: "For personal interest sharing only; not financial advice, trade recommendations, or an investment solicitation. Capital is at risk."
   },
   socials: [
     {
