@@ -123,7 +123,18 @@ export const portfolioData: PortfolioData = {
    *   date: '2026'
    * }
    */
-  projects: [],
+  projects: [
+    {
+      id: 'position-size-calculator',
+      title: 'Position Size & Lot Calculator',
+      description: 'A fast, distraction-free position size and lot calculator for traders. Calculates exact standard lots, risk capital, and pip values across Forex pairs and Gold with zero ads.',
+      tags: ['TypeScript', 'React', 'Tailwind CSS', 'Risk Management'],
+      githubUrl: 'https://github.com/devanxcode/Position-Size-Calculator',
+      liveUrl: 'https://position-size-calculator-sigma.vercel.app',
+      status: 'completed',
+      date: '2026'
+    }
+  ],
   trading: {
     title: "Beyond code: Markets",
     badge: "Secondary Interest",
