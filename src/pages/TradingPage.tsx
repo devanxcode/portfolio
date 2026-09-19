@@ -11,7 +11,6 @@ import {
   Hexagon,
   Scale,
   Brain,
-  Code2,
   Calculator,
   Layers,
   SlidersHorizontal,
@@ -48,20 +47,6 @@ export const TradingPage = () => {
     },
   ];
 
-  const parallels = [
-    {
-      title: 'Root Cause Debugging ↔ Trade Audit',
-      desc: 'Finding a root cause behind a software bug requires the exact same objective mindset as auditing a losing trade log to diagnose execution flaws.',
-    },
-    {
-      title: 'Systematic Discretion ↔ Clean Code',
-      desc: 'Just as modular code executes conditional branches based on precise logic, manual discretionary trading triggers orders only when predefined SnR rules align.',
-    },
-    {
-      title: 'Resilience Under Uncertainty',
-      desc: 'Neither live deployments nor financial markets offer 100% certainty. Both demand staying calm, managing downside, and executing steadily under pressure.',
-    },
-  ];
 
   const routineSteps = [
     {
@@ -179,7 +164,7 @@ export const TradingPage = () => {
         </div>
       </motion.div>
 
-      {/* Real Developer Crossover: Custom Position Size Calculator Tool */}
+      {/* Custom Position Size Calculator Tool */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -190,7 +175,7 @@ export const TradingPage = () => {
           <div className="max-w-xl">
             <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-accent font-semibold mb-2">
               <Calculator className="w-4 h-4" />
-              <span>Developer ↔ Trader Crossover</span>
+              <span>Risk Management Tool</span>
             </div>
             <h2 className="text-xl sm:text-2xl font-bold text-ink-primary-light dark:text-ink-primary-dark mb-2">
               Built to Solve Real Risk: Position Size Calculator
@@ -346,43 +331,7 @@ export const TradingPage = () => {
         </div>
       </div>
 
-      {/* Section 4: Parallels Between Code and Markets */}
-      <div className="mb-12 sm:mb-16">
-        <div className="flex items-center gap-2 mb-2 text-accent">
-          <Code2 className="w-4 h-4" />
-          <span className="text-xs font-mono uppercase tracking-wider font-semibold">Crossover Mindset</span>
-        </div>
-        <h2 className="text-2xl sm:text-3xl font-bold text-ink-primary-light dark:text-ink-primary-dark mb-3">
-          How Trading Strengthens My Engineering
-        </h2>
-        <p className="text-sm sm:text-base text-ink-secondary-light dark:text-ink-secondary-dark mb-8">
-          The mental models and emotional control forged in financial markets directly enhance software development.
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-          {parallels.map((item, idx) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 * idx, ease: APPLE_EASE }}
-              className="p-6 rounded-2xl hairline-border bg-surface-light dark:bg-surface-dark flex flex-col justify-between"
-            >
-              <div>
-                <CheckCircle2 className="w-4 h-4 text-emerald-500 mb-3" />
-                <h3 className="text-base font-semibold text-ink-primary-light dark:text-ink-primary-dark mb-2">
-                  {item.title}
-                </h3>
-              </div>
-              <p className="text-xs sm:text-sm text-ink-secondary-light dark:text-ink-secondary-dark leading-relaxed mt-2">
-                {item.desc}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      {/* Section 5: Transparent Disclaimer */}
+      {/* Section 4: Transparent Disclaimer */}
       <div className="p-6 rounded-2xl hairline-border bg-surface-light-elevated/40 dark:bg-surface-dark-elevated/30 flex items-start gap-3 text-xs text-ink-muted-light dark:text-ink-muted-dark leading-relaxed">
         <Info className="w-4 h-4 text-accent shrink-0 mt-0.5" />
         <div>
