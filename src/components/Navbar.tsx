@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { Sun, Moon, ArrowUpRight, Search, X } from 'lucide-react';
+import { Sun, Moon, ArrowUpRight, X } from 'lucide-react';
 import { GithubIcon, InstagramIcon } from './icons/BrandIcons';
 import { portfolioData } from '../data/portfolioData';
 
 interface NavbarProps {
   isDark: boolean;
   onToggleTheme: () => void;
-  onOpenCommandPalette?: () => void;
 }
 
 interface NavItem {
@@ -21,13 +20,12 @@ interface NavItem {
 const NAV_LINKS: NavItem[] = [
   { label: 'About', href: '/#about', count: '01' },
   { label: 'Skills', href: '/#skills', count: '02' },
-  { label: 'Roadmap', href: '/#roadmap', count: '03' },
-  { label: 'Projects', href: '/projects', isRoute: true, count: '04' },
-  { label: 'Trading', href: '/#trading', count: '05' },
-  { label: 'Contact', href: '/#contact', count: '06' },
+  { label: 'Projects', href: '/projects', isRoute: true, count: '03' },
+  { label: 'Trading', href: '/trading', isRoute: true, count: '04' },
+  { label: 'Contact', href: '/#contact', count: '05' },
 ];
 
-export const Navbar = ({ isDark, onToggleTheme, onOpenCommandPalette }: NavbarProps) => {
+export const Navbar = ({ isDark, onToggleTheme }: NavbarProps) => {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
@@ -89,7 +87,7 @@ export const Navbar = ({ isDark, onToggleTheme, onOpenCommandPalette }: NavbarPr
             onMouseLeave={() => setHoveredIdx(null)}
           >
             {NAV_LINKS.map((link, idx) => {
-              const isProjectsActive = link.isRoute && location.pathname === '/projects';
+              const isRouteActive = link.isRoute && location.pathname === link.href;
 
               return link.isRoute ? (
                 <Link
@@ -97,7 +95,7 @@ export const Navbar = ({ isDark, onToggleTheme, onOpenCommandPalette }: NavbarPr
                   to={link.href}
                   onMouseEnter={() => setHoveredIdx(idx)}
                   className={`relative px-3.5 py-1.5 text-xs font-medium transition-colors ${
-                    isProjectsActive
+                    isRouteActive
                       ? 'text-accent font-semibold'
                       : 'text-ink-secondary-light dark:text-ink-secondary-dark hover:text-ink-primary-light dark:hover:text-ink-primary-dark'
                   }`}
@@ -133,22 +131,8 @@ export const Navbar = ({ isDark, onToggleTheme, onOpenCommandPalette }: NavbarPr
 
           <div className="h-3.5 w-[1px] bg-black/[0.08] dark:bg-white/[0.1] hidden sm:block" />
 
-          {/* Action buttons: Command Palette + Theme Toggle + Mobile Menu Trigger */}
+          {/* Action buttons: Theme Toggle + Mobile Menu Trigger */}
           <div className="flex items-center gap-1 sm:gap-1.5">
-            {/* Command Palette Trigger */}
-            {onOpenCommandPalette && (
-              <button
-                onClick={onOpenCommandPalette}
-                type="button"
-                className="flex items-center gap-1 p-2 sm:px-2.5 sm:py-1 rounded-full text-xs font-mono text-ink-secondary-light dark:text-ink-secondary-dark hover:text-ink-primary-light dark:hover:text-ink-primary-dark hover:bg-black/[0.05] dark:hover:bg-white/[0.08] transition-colors focus:outline-none"
-                title="Search or press Cmd+K / Ctrl+K"
-                aria-label="Open Command Search"
-              >
-                <Search className="w-3.5 h-3.5 text-accent" />
-                <span className="hidden sm:inline text-[11px]">⌘K</span>
-              </button>
-            )}
-
             {/* Theme Toggle Button */}
             <motion.button
               whileTap={{ scale: 0.92 }}
@@ -171,7 +155,7 @@ export const Navbar = ({ isDark, onToggleTheme, onOpenCommandPalette }: NavbarPr
               </motion.div>
             </motion.button>
 
-            {/* Mobile Menu Morph Button (Bigger touch target on phones) */}
+            {/* Mobile Menu Morph Button */}
             <motion.button
               whileTap={{ scale: 0.92 }}
               onClick={() => setIsOpen(!isOpen)}
@@ -210,7 +194,7 @@ export const Navbar = ({ isDark, onToggleTheme, onOpenCommandPalette }: NavbarPr
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-50 md:hidden bg-canvas-light/98 dark:bg-canvas-dark/98 backdrop-blur-3xl flex flex-col justify-between pt-6 pb-8 px-6 overflow-y-auto"
           >
-            {/* Top Bar inside Menu: Logo + Close Button */}
+            {/* Top Bar inside Menu */}
             <div className="flex items-center justify-between pb-6 border-b border-black/[0.06] dark:border-white/[0.08]">
               <div className="flex items-center gap-2">
                 <span className="relative flex h-2.5 w-2.5">
@@ -233,14 +217,14 @@ export const Navbar = ({ isDark, onToggleTheme, onOpenCommandPalette }: NavbarPr
               </motion.button>
             </div>
 
-            {/* Navigation Links - Bigger, bolder, generous touch targets */}
+            {/* Navigation Links */}
             <nav className="flex flex-col py-6 space-y-1">
               <span className="text-[11px] font-mono uppercase tracking-widest text-ink-muted-light dark:text-ink-muted-dark mb-3 px-2">
                 Explore
               </span>
 
               {NAV_LINKS.map((link, idx) => {
-                const isProjectsActive = link.isRoute && location.pathname === '/projects';
+                const isRouteActive = link.isRoute && location.pathname === link.href;
 
                 return link.isRoute ? (
                   <motion.div
@@ -253,7 +237,7 @@ export const Navbar = ({ isDark, onToggleTheme, onOpenCommandPalette }: NavbarPr
                       to={link.href}
                       onClick={() => setIsOpen(false)}
                       className={`group flex items-center justify-between py-3.5 px-3 rounded-2xl transition-colors active:scale-[0.99] ${
-                        isProjectsActive
+                        isRouteActive
                           ? 'bg-accent/10 text-accent font-bold'
                           : 'text-ink-primary-light dark:text-ink-primary-dark hover:bg-black/[0.04] dark:hover:bg-white/[0.04]'
                       }`}
@@ -318,7 +302,7 @@ export const Navbar = ({ isDark, onToggleTheme, onOpenCommandPalette }: NavbarPr
                   href="mailto:dexanxcode@gmail.com"
                   className="flex flex-col items-center justify-center gap-1.5 p-3 rounded-2xl hairline-border bg-surface-light dark:bg-surface-dark text-ink-primary-light dark:text-ink-primary-dark hover:bg-surface-light-elevated dark:hover:bg-surface-dark-elevated transition-colors text-xs font-medium"
                 >
-                  <Search className="w-4 h-4 text-accent" />
+                  <span className="font-mono text-xs text-accent">@</span>
                   <span>Email</span>
                 </a>
 
